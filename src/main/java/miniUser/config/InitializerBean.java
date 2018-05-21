@@ -60,7 +60,7 @@ public class InitializerBean {
     @PostConstruct
     public void populateDatabase(){
         for(String name : users){
-            userRepository.save(new User(name, name.toLowerCase().replaceAll(" ", ".") + "@kulcssoft.hu"));
+            userRepository.save(new User(name, name.toLowerCase().replaceAll(" ", "@") + ".com"));
         }
     }
 

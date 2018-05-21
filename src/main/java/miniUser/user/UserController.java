@@ -26,6 +26,7 @@ public class UserController {
     @ResponseBody
     public String getAllUser(){
         Gson gson = new Gson();
+        System.out.println("inusers");
         List<User> users = userService.getUsers();
         return gson.toJson(users);
     }
