@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,11 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @GetMapping(value = "/")
+    public String mainPage(){
+        return "/main";
+    }
+
     @GetMapping(value = "/users")
     @ResponseBody
     public String getAllUser(){
@@ -25,7 +31,7 @@ public class UserController {
     }
 
 
-    @GetMapping(value = "/save-user")
+    @PostMapping(value = "/save-user")
     @ResponseBody
     public void saveUser(HttpServletRequest request){
         String userName = request.getParameter("userName");
