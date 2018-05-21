@@ -1,12 +1,42 @@
 package miniUser.user;
 
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @GetMapping(value = "/users")
+    @ResponseBody
+    public String getAllUser(){
+        Gson gson = new Gson();
+        List<User> users = userService.getUsers();
+        return gson.toJson(users);
+    }
+
+
+    @GetMapping(value = "/save-user")
+    @ResponseBody
+    public void saveUser(HttpServletRequest request){
+        String userName = request.getParameter("userName");
+        String email = request.getParameter("email");
+        userService.saveUser(new User(userName, email));
+    }
+
+    @GetMapping(value = "/delete/{id}")
+    @ResponseBody
+    public void deleteUser(@PathVariable int id){
+        userService.deleteUserById(id);
+    }
 
 }
