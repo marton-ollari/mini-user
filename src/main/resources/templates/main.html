@@ -13,10 +13,10 @@
         <span>Search: <input type="text" ng-model="search"/></span>
         <span ng-click="getList()">Show users</span>
         <span>{{message}}</span>
-        <form ng-submit="addUser()">
-            <input type="text" placeholder="name" ng-model="name"/>
-            <input type="text" placeholder="email" ng-model="email"/>
-            <input type="submit" value="Add User"/>
+        <form name="newUser" ng-submit="addUser()" novalidate="">
+            <input type="text" placeholder="name" ng-model="name" ng-required="true"/>
+            <input type="email" placeholder="email" ng-model="email" ng-required="true"/>
+            <input type="submit" value="Add User" ng-disabled="newUser.$invalid"/>
         </form>
         <table>
             <tr>
