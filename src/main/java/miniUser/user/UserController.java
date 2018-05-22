@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class UserController {
@@ -26,7 +27,6 @@ public class UserController {
     @ResponseBody
     public String getAllUser(){
         Gson gson = new Gson();
-        System.out.println("inusers");
         List<User> users = userService.getUsers();
         return gson.toJson(users);
     }
@@ -35,12 +35,12 @@ public class UserController {
     @PostMapping(value = "/save-user")
     @ResponseBody
     public void saveUser(HttpServletRequest request){
-        String userName = request.getParameter("userName");
+        String userName = request.getParameter("name");
         String email = request.getParameter("email");
         userService.saveUser(new User(userName, email));
     }
 
-    @GetMapping(value = "/delete/{id}")
+    @PostMapping(value = "/delete/{id}")
     @ResponseBody
     public void deleteUser(@PathVariable int id){
         userService.deleteUserById(id);
