@@ -15,34 +15,35 @@
 <body>
     <div ng-controller="UserController">
         <div class="container-fluid">
-            <div class="row">
-                <span class="col-xs-3 col-md-3 col-md-offset-1 col-xs-offset-1">
-                    <h4 class="fas fa-user-tie"> MINI USER</h4>
-                </span>
-                <span class="col-xs-3 col-md-3 col-md-offset-3 col-xs-offset-3">
-                    <span>{{message}}</span>
-                </span>
-            </div>
-
-            <div class="row">
-                <div class="col-xs-3 col-md-3 col-md-offset-1 col-xs-offset-1">
-                    <span><i class="fas fa-search"></i><input type="text" placeholder="Search" ng-model="search"/></span>
-                </div>
-
-                <div class="col-xs-6 col-md-6 col-md-offset-1 col-xs-offset-1">
-                    <span>
-                        <form name="newUser" ng-submit="checkEmail()" novalidate="">
-                            <input type="text" placeholder="Username" ng-model="name" ng-required="true"/>
-                            <input type="email" placeholder="user@email.com" ng-model="email" ng-required="true"/>
-                            <input type="submit" value="Add User" class="btn btn-primary btn-sm" ng-disabled="newUser.$invalid"/>
-                        </form>
+            <nav class="navbar navbar-fixed-top">
+                <div class="row">
+                    <span class="col-xs-3 col-md-3 col-md-offset-1 col-xs-offset-1">
+                        <h4 class="fas fa-user-tie"> MINI USER</h4>
+                    </span>
+                    <span class="col-xs-3 col-md-3 col-md-offset-3 col-xs-offset-3">
+                        <h4>{{message}}</h4>
                     </span>
                 </div>
-            </div>
 
+                <div class="row">
+                    <div class="col-xs-3 col-md-3 col-md-offset-1 col-xs-offset-1">
+                        <span><i class="fas fa-search"></i><input type="text" placeholder="Search" ng-model="search"/></span>
+                    </div>
+
+                    <div class="col-xs-6 col-md-6 col-md-offset-1 col-xs-offset-1">
+                        <span>
+                            <form name="newUser" ng-submit="checkEmail()" novalidate="">
+                                <input type="text" placeholder="Username" ng-model="name" ng-required="true"/>
+                                <input type="email" placeholder="user@email.com" ng-model="email" ng-required="true"/>
+                                <input type="submit" value="Add User" class="btn btn-primary btn-sm" ng-disabled="newUser.$invalid"/>
+                            </form>
+                        </span>
+                    </div>
+                </div>
+            </nav>
             <div class="row">
                 <div class="col-xs-12 col-md-10 col-md-offset-1">
-                    <table class="table table-responsive-md">
+                    <table id="user-list" class="table table-responsive-md">
                         <tr>
                             <th>
                                 ID
@@ -55,9 +56,11 @@
                                 <button ng-click="order = '-name'" type="button" class="btn btn-primary btn-sm"><i class="fas fa-angle-down fa-sm"></i></button>
                             </th>
                             <th>
-                                E-mail
-                                <button ng-click="order = 'email'" type="button" class="btn btn-primary btn-sm"><i class="fas fa-angle-up fa-sm"></i></button>
-                                <button ng-click="order = '-email'" type="button" class="btn btn-primary btn-sm"><i class="fas fa-angle-down fa-sm"></i></button>
+                                <div>
+                                    E-mail
+                                    <button ng-click="order = 'email'" type="button" class="btn btn-primary btn-sm"><i class="fas fa-angle-up fa-sm"></i></button>
+                                    <button ng-click="order = '-email'" type="button" class="btn btn-primary btn-sm"><i class="fas fa-angle-down fa-sm"></i></button>
+                                </div>
                             </th>
                             <th>Delete</th>
                         </tr>
@@ -65,7 +68,7 @@
                             <td>{{user.id}}</td>
                             <td>{{user.name}}</td>
                             <td>{{user.email}}</td>
-                            <td><button ng-click="removeUser(user)" type="button" class="btn btn-danger fas fa-times-circle fa-lg"></button></td>
+                            <td><i ng-click="removeUser(user)" class="fas fa-times-circle fa-lg"></i></td>
                         </tr>
                     </table>
                 </div>
