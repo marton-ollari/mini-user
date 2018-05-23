@@ -4,41 +4,59 @@ var miniUser = angular.module('miniUser', []);
 miniUser.controller('UserController', ['$scope', '$http', '$timeout', function ($scope, $http, $timeout) {
 
     $scope.removeUser = function (user) {
-        $http.post("/delete/"+user.id)
+        $http.post("/delete/" + user.id)
             .then(function () {
                 $scope.showMessage("Deleted user");
                 $scope.getList();
-            }, function errorCallback(response){
+            }, function errorCallback(response) {
                 $scope.showMessage("Can't connect to database");
             });
     };
 
     $scope.addUser = function () {
-        $.post("/save-user", {"name": $scope.name,"email": $scope.email})
-            .then(function successCallback(response){
+        $.post("/save-user", {"name": $scope.name, "email": $scope.email})
+            .then(function successCallback(response) {
                 $scope.showMessage("Saved user to database");
                 $scope.getList();
-            }, function errorCallback(response){
+            }, function errorCallback(response) {
                 $scope.showMessage("Can't connect to database");
             });
         $scope.name = '';
         $scope.email = '';
     };
 
+    $scope.checkEmail = function () {
+        $.post("/user-by-email", {"email": $scope.email})
+            .then(function successCallback(response) {
+                console.log(response);
+                console.log(response["name"]);
+                if(response["name"] == null){
+                    console.log("try to save user")
+                    $scope.addUser()
+                } else {
+                    $scope.showMessage("Invalid email");
+                }
+            }, function errorCallback(response) {
+                $scope.showMessage("Can'connect to database");
+            })
+    }
+
     $scope.getList = function () {
         $http.get("/users")
-            .then(function successCallback(users){
+            .then(function successCallback(users) {
                 $scope.users = users.data;
-            }, function errorCallback(response){
+            }, function errorCallback(response) {
                 $scope.showMessage("Can't connect to database");
-        });
+            });
     };
 
-    $scope.showMessage = function(message) {
+    $scope.showMessage = function (message) {
         $scope.message = message;
         $timeout(function () {
             $scope.message = "";
         }, 2000)
-    }
+    };
+
+    $scope.getList();
 }]);
 

@@ -2,6 +2,8 @@ package miniUser.user;
 
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,6 +40,14 @@ public class UserController {
         String userName = request.getParameter("name");
         String email = request.getParameter("email");
         userService.saveUser(new User(userName, email));
+    }
+
+    @PostMapping(value = "/user-by-email")
+    @ResponseBody
+    public String emailValidation(HttpServletRequest request){
+        Gson gson = new Gson();
+        String email = request.getParameter("email");
+        return gson.toJson(userService.getUserByEmail(email));
     }
 
     @PostMapping(value = "/delete/{id}")

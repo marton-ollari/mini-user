@@ -7,43 +7,70 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
     <script src="/js/miniUser.js"></script>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body>
     <div ng-controller="UserController">
-        <span>Search: <input type="text" ng-model="search"/></span>
-        <span ng-click="getList()">Show users</span>
-        <span>{{message}}</span>
-        <form name="newUser" ng-submit="addUser()" novalidate="">
-            <input type="text" placeholder="name" ng-model="name" ng-required="true"/>
-            <input type="email" placeholder="email" ng-model="email" ng-required="true"/>
-            <input type="submit" value="Add User" ng-disabled="newUser.$invalid"/>
-        </form>
-        <table>
-            <tr>
-                <th>
-                    id
-                    <span ng-click="order = 'id'">+ </span>
-                    <span ng-click="order = '-id'">-</span>
-                </th>
-                <th>
-                    name
-                    <span ng-click="order = 'name'">+ </span>
-                    <span ng-click="order = '-name'">-</span>
-                </th>
-                <th>
-                    email
-                    <span ng-click="order = 'email'">+ </span>
-                    <span ng-click="order = '-email'">-</span>
-                </th>
-                <th>delete</th>
-            </tr>
-            <tr ng-repeat="user in users | orderBy: order | filter: search">
-                <td>{{user.id}}</td>
-                <td>{{user.name}}</td>
-                <td>{{user.email}}</td>
-                <td><div ng-click="removeUser(user)">x</div></td>
-            </tr>
-        </table>
+        <div class="container-fluid">
+            <div class="row">
+                <span class="col-xs-3 col-md-3 col-md-offset-1 col-xs-offset-1">
+                    <h4 class="fas fa-user-tie"> MINI USER</h4>
+                </span>
+                <span class="col-xs-3 col-md-3 col-md-offset-3 col-xs-offset-3">
+                    <span>{{message}}</span>
+                </span>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-3 col-md-3 col-md-offset-1 col-xs-offset-1">
+                    <span><i class="fas fa-search"></i><input type="text" placeholder="Search" ng-model="search"/></span>
+                </div>
+
+                <div class="col-xs-6 col-md-6 col-md-offset-1 col-xs-offset-1">
+                    <span>
+                        <form name="newUser" ng-submit="checkEmail()" novalidate="">
+                            <input type="text" placeholder="Username" ng-model="name" ng-required="true"/>
+                            <input type="email" placeholder="user@email.com" ng-model="email" ng-required="true"/>
+                            <input type="submit" value="Add User" class="btn btn-primary btn-sm" ng-disabled="newUser.$invalid"/>
+                        </form>
+                    </span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-10 col-md-offset-1">
+                    <table class="table table-responsive-md">
+                        <tr>
+                            <th>
+                                ID
+                                <button ng-click="order = 'id'" type="button" class="btn btn-primary btn-sm"><i class="fas fa-angle-up fa-sm"></i></button>
+                                <button ng-click="order = '-id'" type="button" class="btn btn-primary btn-sm"><i class="fas fa-angle-down fa-sm"></i></button>
+                            </th>
+                            <th>
+                                Username
+                                <button ng-click="order = 'name'" type="button" class="btn btn-primary btn-sm"><i class="fas fa-angle-up fa-sm"></i></button>
+                                <button ng-click="order = '-name'" type="button" class="btn btn-primary btn-sm"><i class="fas fa-angle-down fa-sm"></i></button>
+                            </th>
+                            <th>
+                                E-mail
+                                <button ng-click="order = 'email'" type="button" class="btn btn-primary btn-sm"><i class="fas fa-angle-up fa-sm"></i></button>
+                                <button ng-click="order = '-email'" type="button" class="btn btn-primary btn-sm"><i class="fas fa-angle-down fa-sm"></i></button>
+                            </th>
+                            <th>Delete</th>
+                        </tr>
+                        <tr ng-repeat="user in users | orderBy: order | filter: search">
+                            <td>{{user.id}}</td>
+                            <td>{{user.name}}</td>
+                            <td>{{user.email}}</td>
+                            <td><button ng-click="removeUser(user)" type="button" class="btn btn-danger fas fa-times-circle fa-lg"></button></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
