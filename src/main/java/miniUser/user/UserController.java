@@ -5,10 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -44,9 +41,8 @@ public class UserController {
 
     @PostMapping(value = "/user-by-email")
     @ResponseBody
-    public String emailValidation(HttpServletRequest request){
+    public String emailValidation(@RequestBody String email){
         Gson gson = new Gson();
-        String email = request.getParameter("email");
         return gson.toJson(userService.getUserByEmail(email));
     }
 

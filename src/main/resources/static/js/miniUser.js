@@ -26,14 +26,14 @@ miniUser.controller('UserController', ['$scope', '$http', '$timeout', function (
     };
 
     $scope.checkEmail = function () {
-        $.post("/user-by-email", {"email": $scope.email})
+        $http.post("/user-by-email", $scope.email)
             .then(function successCallback(response) {
                 console.log(response);
-                console.log(response["name"]);
-                if(response["name"] == null){
+                if(response["data"] == null){
                     console.log("try to save user")
                     $scope.addUser()
                 } else {
+                    $scope.email = '';
                     $scope.showMessage("Invalid email");
                 }
             }, function errorCallback(response) {
