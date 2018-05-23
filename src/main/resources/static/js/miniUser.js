@@ -28,9 +28,7 @@ miniUser.controller('UserController', ['$scope', '$http', '$timeout', function (
     $scope.checkEmail = function () {
         $http.post("/user-by-email", $scope.email)
             .then(function successCallback(response) {
-                console.log(response);
                 if(response["data"] == null){
-                    console.log("try to save user")
                     $scope.addUser()
                 } else {
                     $scope.email = '';
@@ -54,7 +52,7 @@ miniUser.controller('UserController', ['$scope', '$http', '$timeout', function (
         $scope.message = message;
         $timeout(function () {
             $scope.message = "";
-        }, 2000)
+        }, 3000)
     };
 
     $scope.getList();

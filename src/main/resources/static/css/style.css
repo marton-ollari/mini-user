@@ -6,3 +6,51 @@ input[disabled="disabled"]{
     opacity: 0.4;
     cursor: not-allowed !important;
 }
+
+body {
+    padding-top: 70px;
+    background-color: rgba(223, 231, 116, 0.89) !important;
+}
+
+
+.fa-search{
+    padding-right: 5px;
+}
+
+.fa-times-circle{
+    color: #aa951c;
+}
+
+.navbar{
+    background: linear-gradient(to bottom, #dbdd43, #d2d443) !important;
+    padding-bottom: 10px;
+}
+
+
+th{
+    background: linear-gradient(to bottom, #dcf75a, #bcd756);
+    text-align: center;
+    font-size: 25px;
+}
+
+td{
+    background-color: rgb(223, 247, 169);
+    border: 1px solid #dcf75a;
+    font-size: 20px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background: linear-gradient(to bottom, #c6b11d, #aa951c) !important;
+
+}
+
+.btn-primary:hover{
+    background: linear-gradient(to bottom, #bca71c, #95801c) !important;
+}
+
+.btn-primary:disabled{
+    background: linear-gradient(to bottom, rgba(188, 167, 28, 0.51), rgba(149, 128, 28, 0.51)) !important;
+
+}
