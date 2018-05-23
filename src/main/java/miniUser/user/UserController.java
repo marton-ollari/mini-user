@@ -18,13 +18,13 @@ public class UserController {
     private UserService userService;
 
     @GetMapping(value = "/")
-    public String mainPage(){
+    public String mainPage() {
         return "/main";
     }
 
     @GetMapping(value = "/users")
     @ResponseBody
-    public String getAllUser(){
+    public String getAllUser() {
         Gson gson = new Gson();
         List<User> users = userService.getUsers();
         return gson.toJson(users);
@@ -33,7 +33,7 @@ public class UserController {
 
     @PostMapping(value = "/save-user")
     @ResponseBody
-    public void saveUser(HttpServletRequest request){
+    public void saveUser(HttpServletRequest request) {
         String userName = request.getParameter("name");
         String email = request.getParameter("email");
         userService.saveUser(new User(userName, email));
@@ -41,14 +41,14 @@ public class UserController {
 
     @PostMapping(value = "/user-by-email")
     @ResponseBody
-    public String emailValidation(@RequestBody String email){
+    public String emailValidation(@RequestBody String email) {
         Gson gson = new Gson();
         return gson.toJson(userService.getUserByEmail(email));
     }
 
     @PostMapping(value = "/delete/{id}")
     @ResponseBody
-    public void deleteUser(@PathVariable int id){
+    public void deleteUser(@PathVariable int id) {
         userService.deleteUserById(id);
     }
 

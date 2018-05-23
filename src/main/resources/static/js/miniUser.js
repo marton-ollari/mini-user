@@ -28,14 +28,14 @@ miniUser.controller('UserController', ['$scope', '$http', '$timeout', function (
     $scope.checkEmail = function () {
         $http.post("/user-by-email", $scope.email)
             .then(function successCallback(response) {
-                if(response["data"] == null){
+                if (response["data"] == null) {
                     $scope.addUser()
                 } else {
                     $scope.email = '';
                     $scope.showMessage("Invalid email");
                 }
             }, function errorCallback(response) {
-                $scope.showMessage("Can'connect to database");
+                $scope.showMessage("Can't connect to database");
             })
     }
 

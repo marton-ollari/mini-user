@@ -1,8 +1,8 @@
-input.ng-invalid.ng-touched{
+input.ng-invalid.ng-touched {
     border: 2px solid red;
 }
 
-input[disabled="disabled"]{
+input[disabled="disabled"] {
     opacity: 0.4;
     cursor: not-allowed !important;
 }
@@ -12,28 +12,26 @@ body {
     background-color: rgba(223, 231, 116, 0.89) !important;
 }
 
-
-.fa-search{
+.fa-search {
     padding-right: 5px;
 }
 
-.fa-times-circle{
+.fa-times-circle {
     color: #aa951c;
 }
 
-.navbar{
+.navbar {
     background: linear-gradient(to bottom, #dbdd43, #d2d443) !important;
     padding-bottom: 10px;
 }
 
-
-th{
+th {
     background: linear-gradient(to bottom, #dcf75a, #bcd756);
     text-align: center;
     font-size: 25px;
 }
 
-td{
+td {
     background-color: rgb(223, 247, 169);
     border: 1px solid #dcf75a;
     font-size: 20px;
@@ -46,11 +44,11 @@ td{
 
 }
 
-.btn-primary:hover{
+.btn-primary:hover {
     background: linear-gradient(to bottom, #bca71c, #95801c) !important;
 }
 
-.btn-primary:disabled{
+.btn-primary:disabled {
     background: linear-gradient(to bottom, rgba(188, 167, 28, 0.51), rgba(149, 128, 28, 0.51)) !important;
 
 }
